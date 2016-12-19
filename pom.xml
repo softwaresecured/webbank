@@ -28,6 +28,7 @@
         <spring.framework.version>4.0.2.RELEASE</spring.framework.version>
         <hibernate.version>4.3.4.Final</hibernate.version>
         <spring.security.version>3.2.2.RELEASE</spring.security.version>
+        <jetty-version>9.4.0.v20161208</jetty-version>
     </properties>
 
     <dependencies>
@@ -196,25 +197,53 @@
                 <version>1.4.6</version>
             </dependency>
 
+<!--             <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-annotations</artifactId>
+                <version>${jetty-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-webapp</artifactId>
+                <version>${jetty-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>apache-jsp</artifactId>
+                <version>${jetty-version}</version>
+                <type>jar</type>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>apache-jstl</artifactId>
+                <version>${jetty-version}</version>
+                <type>pom</type>
+            </dependency> -->
+
     </dependencies>
 
-	<build>
-        <finalName>webbank</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.2.2.v20140723</version>
-                <configuration>
-                    <webApp>
-                        <contextPath>/webbank</contextPath>
-                    </webApp>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
     <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <finalName>webbank</finalName>
+                <plugins>
+                    <plugin>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-maven-plugin</artifactId>
+                        <version>9.2.2.v20140723</version>
+                        <configuration>
+                            <webApp>
+                                <contextPath>/webbank</contextPath>
+                            </webApp>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
         <profile>
             <id>openshift</id>
             <build>
@@ -242,11 +271,22 @@
             </activation>
 
             <build>
+                <finalName>webbank</finalName>
                 <plugins>
                     <plugin>
                         <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-maven-plugin</artifactId>
+                        <version>${jetty-version}</version>
+                        <configuration>
+                            <webApp>
+                                <contextPath>/webbank</contextPath>
+                            </webApp>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.eclipse.jetty</groupId>
                         <artifactId>jetty-jspc-maven-plugin</artifactId>
-                        <version>9.3.6.v20151106</version>
+                        <version>${jetty-version}</version>
                         <executions>
                             <execution>
                                 <id>jspc</id>
