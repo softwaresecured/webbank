@@ -308,5 +308,13 @@
             </build>
         </profile>
     </profiles>
+	
+	<distributionManagement>
+	    <repository>
+	        <id>nexus-release-repository</id>
+	        <name>release-repository</name>
+	        <url>${REPOSITORY_URL}</url>
+	    </repository>
+	</distributionManagement>
 </project>
 
