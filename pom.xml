@@ -232,6 +232,23 @@
                 <finalName>webbank</finalName>
                 <plugins>
                     <plugin>
+                      <groupId>org.owasp</groupId>
+                      <artifactId>dependency-check-maven</artifactId>
+                      <version>1.4.4</version>
+                      <configuration>
+                        <skipProvidedScope>true</skipProvidedScope>
+                        <skipRuntimeScope>true</skipRuntimeScope>
+                        <format>xml</format>
+                      </configuration>
+                      <executions>
+                          <execution>
+                              <goals>
+                                  <goal>check</goal>
+                              </goals>
+                          </execution>
+                      </executions>
+                    </plugin>
+                    <plugin>
                         <groupId>org.eclipse.jetty</groupId>
                         <artifactId>jetty-maven-plugin</artifactId>
                         <version>9.2.2.v20140723</version>
@@ -304,6 +321,23 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <plugin>
+                        <groupId>org.owasp</groupId>
+                        <artifactId>dependency-check-maven</artifactId>
+                        <version>1.4.4</version>
+                        <configuration>
+                          <skipProvidedScope>true</skipProvidedScope>
+                          <skipRuntimeScope>true</skipRuntimeScope>
+                          <format>xml</format>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                      </plugin>
                 </plugins>
             </build>
         </profile>
